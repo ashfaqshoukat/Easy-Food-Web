@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="jquery/jquery.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+  // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyARN_Oni507UqzRa9szrWlahiz6JJOnDMY",
+      authDomain: "easyfood-bb565.firebaseapp.com",
+      databaseURL: "https://easyfood-bb565.firebaseio.com",
+      projectId: "easyfood-bb565",
+      storageBucket: "easyfood-bb565.appspot.com",
+      messagingSenderId: "33564752143",
+      appId: "1:33564752143:web:32435736e1542a041be67a",
+      measurementId: "G-HW9VDZDZJT"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+<style>
+#loading-div{
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+    border: 5px solid #1468b3;
+    text-align: center;
+    color: #202020;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    display: none;
+    margin-top: -100px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url("/css/pie/PIE.htc"); /* HANDLES IE */
+}
+
+</style>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+
+
+<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-signal"></i> Charts &amp; graphs</a>
+  <ul>
+    <li ><a href="dashboard.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class="active"> <a href="add_employee.html"><i class="icon icon-signal"></i> <span>Add New Food Menu</span></a> </li>
+    <li> <a href="add_new_skill.html"><i class="icon icon-inbox"></i> <span>Add New Food Category</span></a> </li>
+      <li> <a href="user_list.html"><i class="icon icon-inbox"></i> <span>List Of User</span></a> </li>
+<!--      <li> <a href="hiredperson_list.html"><i class="icon icon-inbox"></i> <span>Hired Employee</span></a> </li>-->
+      <li> <a href="bookedEmployee.html"><i class="icon icon-signal"></i> <span>User Order</span></a> </li>
+
+
+  </ul>
+</div>
+  <div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"><a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Charts &amp; graphs</a></div>
+    <h1>Add New Food</h1>
+  </div>
+  <div class="container-fluid">
+    <hr>
+
+
+    <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+              <h5>Food Catergory-Info</h5>
+            </div>
+            <div class="widget-content nopadding">
+              <form class="form-horizontal" id="myFrom"  name="myForm">
+                <div class="control-group">
+                  <label class="control-label">Type Food Item Name</label>
+                  <div class="controls">
+                    <input type="text" name="name" id="name">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Type Price</label>
+                  <div class="controls">
+                    <input type="text" name="price" id="price">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Type Address</label>
+                  <div class="controls">
+                    <input type="text" name="address" id="address">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Select your food type</label>
+                  <div class="controls">
+                    <select  id="catgeory_select" name="catgeory">
+                      <option id="catgeory" value = "-1" selected>[choose food type]</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Select your menu day</label>
+                  <div class="controls">
+                    <select  id="menuday_select" name="menuday">
+                      <option id="menu" value = "-1" selected>[choose menu day]</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Select your menu time</label>
+                  <div class="controls">
+                    <select  id="menutime_select" name="menutime" onchange="onTimeChange()">
+                      <option id="menutime" value = "-1" selected>[choose menu time]</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label">Select your menu start time</label>
+                  <div class="controls">
+                    <select  id="starttime_select" name="starttime" onchange="onStartTimeSelect()">
+                      <option id="starttime" value = "-1" selected>[choose menu start time]</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label">Select your menu end  time</label>
+                  <div class="controls">
+                    <select  id="endtime_select" name="endtime">
+                      <option id="endtime" value = "-1" selected>[choose menu end time]</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <input id="image" type="file" name="pic" multiple accept="image/*">
+                  </div>
+
+                </div>
+                <div >
+                  <button type='button' value="Submit" id="submit_btn"  class="btn btn-success">submit</button>
+
+
+                </div>
+
+              </form>
+            </div>
+            <div id="loading-div" class="ui-corner-all">
+               <img style="height:32px;width:32px;margin:30px;" src="img/spinner.gif" alt="Loading.."/><br>PROCESSING. PLEASE WAIT...
+             </div>
+          </div>
+        </div>
+
+<!--my own javascript fill-->
+<script src="java-script-file/add_new_employee.js"></script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flot.min.js"></script>
+<script src="js/jquery.flot.pie.min.js"></script>
+<script src="js/matrix.charts.js"></script>
+<script src="js/jquery.flot.resize.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/jquery.peity.min.js"></script>
+<script type="text/javascript"></script>
+<script src="js/matrix.dashboard.js"></script>
+</body>
+</html>
