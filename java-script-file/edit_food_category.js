@@ -44,7 +44,7 @@ if(validate())
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then((url) => {
       console.log(url);
-     
+
       writeSkillData(x[0].value,url);
     })
     .catch(console.error);
@@ -53,7 +53,7 @@ if(validate())
   else{
     writeSkillData(x[0].value,profile_image);
   }
-  
+
 
 }
 }
@@ -79,14 +79,14 @@ hideProgressiveDialog();
   }
 
   function fillDataInForm(skillid){
-       firebase.database().ref().child('categories').child(skillid).once('value',function(snapshot)
+       firebase.database().ref().child('categories').child(skillid+"").once('value',function(snapshot)
        {
 
-        console.log(snapshot);
-$('#name').val(snapshot.val().category_name);
-profile_image=snapshot.val().image;
+        console.log(snapshot.val());
+// $('#name').val(snapshot.val().category_name);
+// profile_image=snapshot.val().image;
 
- 
+
 
        });
 
@@ -103,11 +103,11 @@ profile_image=snapshot.val().image;
        return false;
     }
  else{
- 
+
    document.skill_form.name.style.border = "none";
    var skillErr=document.getElementById('skillNameErr');
    skillErr.style.display="none";
- 
+
  }
  if(profile_image==""){
   alert( "Please select image" );

@@ -44,25 +44,29 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li><a href="dashboard.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li> <a href="add_employee.html"><i class="icon icon-signal"></i> <span>Add New Food Menu</span></a> </li>
-    <li> <a href="add_new_skill.html"><i class="icon icon-inbox"></i> <span>Add New Food Category</span></a> </li>
-      <li> <a href="user_list.html"><i class="icon icon-inbox"></i> <span>List Of User</span></a> </li>
-      <!--      <li> <a href="hiredperson_list.html"><i class="icon icon-inbox"></i> <span>Hired Employee</span></a> </li>-->
-      <li class="active"> <a href="bookedEmployee.html"><i class="icon icon-signal"></i> <span>User Order</span></a> </li>
+    <li> <a href="food_category.html"><i class="icon icon-inbox"></i> <span>Add New Food Category</span></a> </li>
+    <li> <a href="user_list.html"><i class="icon icon-inbox"></i> <span>List Of User</span></a> </li>
+    <li> <a href="mealancer_list.html"><i class="icon icon-inbox"></i> <span>List Of Mealancer</span></a> </li>
+    <li > <a href="rider_list.html"><i class="icon icon-inbox"></i> <span>List Of Rider</span></a> </li>
+    <li class="active"> <a href="rider_confirm_order.html"><i class="icon icon-inbox"></i> <span>Rider Confirm Orders</span></a> </li>
+    <li > <a href="userorder.html"><i class="icon icon-signal"></i> <span>User Order</span></a> </li>
   </ul>
 </div>
 <!--sidebar-menu-->
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">hired_employee</a> </div>
-    <h1 id="heading">Hired Employees</h1>
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">user_orders</a> </div>
+    <h1 id="heading">Rider Pickup Order</h1>
   </div>
   <div class="container-fluid">
     <hr>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Hired Employee Table</h5>
+            <h5>Rider Pickup Order Table</h5>
+          </div>
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5 id="ridername"></h5>
           </div>
           <div class="widget-content nopadding">
             <table  id="example" class="table table-bordered data-table">
@@ -78,13 +82,11 @@
                   <th style="width: 10%">Customer Address</th>
                   <th style="width: 5%">Menu Day</th>
                   <th style="width: 5%">Menu Time</th>
-                  <th style="width: 5%">Assign Order</th>
-                  <th style="width: 5%">Delete Order</th>
+                  <th style="width: 5%">Order Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="gradeX">
-                </tr>
+
               </tbody>
             </table>
           </div>
@@ -96,7 +98,7 @@
 
 
 
-<script src ="java-script-file/bookedemployee.js"></script>
+<script src ="java-script-file/rider_order.js"></script>
 
 
 <script src="js/excanvas.min.js"></script>

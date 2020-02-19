@@ -111,7 +111,7 @@ function getAllCategories(){
     //skill_data+='<td>'+childSnapshot.val().image+ '</td>';
    var downurl=childSnapshot.val().image;
    console.log(downurl);
-  skill_data+='<td><button id=edit_btn" class="btn btn-primary" value='+childSnapshot.val().category_id+'>Edit Skill</button></td>';
+  skill_data+='<td><button id=edit_btn" class="btn btn-primary" value='+childSnapshot.val().category_id+'>Delete Food Type</button></td>';
    skill_data+='</tr>'
    $('#example').append(skill_data);
 
@@ -120,10 +120,9 @@ function getAllCategories(){
 }
 
 $(document).on("click","#example tbody tr td button.btn", function() {
-
-  localStorage.setItem("storageName",$(this).val());
-  window.open('edit_skill.html', '_self');
-   console.log($(this).val());
+    var str=$(this).val();
+    firebase.database().ref().child('categories').child(str).remove();
+    document.location.reload();
 });
 
  function showProressiveDialog(){
